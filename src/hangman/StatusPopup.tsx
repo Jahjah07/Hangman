@@ -1,11 +1,16 @@
-import { StyleSheet, Text, View, Modal, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
-import * as Animatable from 'react-native-animatable'
-import colors from '../common/colors'
-import winImg from '../assets/win.png'
-import loseImg from '../assets/lose.png'
+import { StyleSheet, Text, View, Modal, Image, TouchableOpacity, GestureResponderEvent } from 'react-native';
+import React from 'react';
+import * as Animatable from 'react-native-animatable';
+import colors from '../common/colors';
+import winImg from '../assets/win.png';
+import loseImg from '../assets/lose.png';
 
-const StatusPopup = ({ status, onPress }) => {
+interface Props {
+  status: 'win' | 'completed' | 'lost' | ''; // Define the possible values for status
+  onPress: (event: GestureResponderEvent) => void; // Define onPress callback function
+}
+
+const StatusPopup: React.FC<Props> = ({ status, onPress }) => {
 
   const src = status === 'win' || status === 'completed' ? winImg : loseImg;
   const message = status === 'win' ? 'Congrats you won' :
@@ -24,15 +29,14 @@ const StatusPopup = ({ status, onPress }) => {
         </Animatable.View>
       </View>
     </Modal>
-  )
-}
+  );
+};
 
-export default StatusPopup
+export default StatusPopup;
 
 const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
-    // backgroundColor: colors.darkOverlayColor,
     justifyContent: 'flex-end',
     alignItems: 'center',
     marginBottom: 60,
@@ -63,4 +67,4 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
   },
-})
+});

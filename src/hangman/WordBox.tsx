@@ -1,8 +1,13 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useReducer } from 'react'
-import colors from '../common/colors'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useReducer } from 'react';
+import colors from '../common/colors';
 
-const WordBox = ({ wordData }) => {
+interface WordData {
+  word: string;
+  answer: string;
+}
+
+const WordBox = ({ wordData }: { wordData: WordData }) => {
   const [hint, toggleHint] = useReducer(s => !s, false);
 
   const startingLetter = wordData.answer[0];
@@ -21,10 +26,10 @@ const WordBox = ({ wordData }) => {
         </View>
       )}
     </View>
-  )
-}
+  );
+};
 
-export default WordBox
+export default WordBox;
 
 const styles = StyleSheet.create({
   container: {
@@ -32,6 +37,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.wordBox,
     padding: 10,
     borderRadius: 10,
+    maxWidth: '50%',
   },
   word: {
     fontSize: 20,
@@ -40,6 +46,6 @@ const styles = StyleSheet.create({
     textTransform: 'capitalize',
   },
   hintContainer: {
-    alignSelf: 'flex-end'
+    alignSelf: 'flex-end',
   },
-})
+});
